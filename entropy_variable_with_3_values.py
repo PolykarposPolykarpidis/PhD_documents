@@ -33,7 +33,18 @@ for i in acceptable_triad:
 	z.append(a_term_of_entropy(i[0])+a_term_of_entropy(i[1])+a_term_of_entropy(i[2]))
 
 ax = plt.axes(projection="3d")
-ax.plot3D(x,y,z, label='Εντροπία - Πιθανότητα')
+
+
+
+#ax.plot3D(x,y,z, label='Εντροπία - Πιθανότητα')
+
+
+
+#for colourfull scater diagram
+#1 colored by value of `z`
+ax.scatter(x, y, z, c = plt.cm.jet(z/max(z))) 
+
+
 ax.set_xlabel('x = 1')
 ax.set_ylabel('x = 2')
 ax.set_zlabel('H(X)', rotation = 0)
