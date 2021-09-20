@@ -42,14 +42,14 @@ all_data = [["a","G","F","E","F","G","a","b","a","G","G","F","F","E","G"],
 
 
 
-markov_matrix = pd.DataFrame(0.0, index=["E","F","G","a"], columns=["E","F","G","a"])
+markov_matrix = pd.DataFrame(0.0, index=["E","F","G","a","b"], columns=["E","F","G","a","b"])
 #create markov transition matrix order 1 (bigram)
 for data in all_data:
 	temp, _ = transition_matrix_order1(data)
 	markov_matrix = markov_matrix.add(temp,  fill_value=0)
 
 
-print(markov_matrix)
+print(markov_matrix.div(len(all_data)))
 
 
 
