@@ -35,7 +35,7 @@ fig = go.Figure(data=[go.Scatter3d(
 	z=z,
 	mode='markers',
 	marker=dict(
-		size=12,
+		size=5,
 		color=z,                # set color to an array/list of desired values
 		colorscale='Turbo',   # choose a colorscale
 		opacity=0.8
@@ -44,11 +44,12 @@ fig = go.Figure(data=[go.Scatter3d(
 
 
 # tight layout
-fig.update_layout(scene = dict(
-					xaxis_title='X = 1',
-					yaxis_title='X = 2',
-					zaxis_title='H(X)'),
-					margin=dict(l=0, r=0, b=0, t=0))
+fig.update_layout(title='Εντροπία - Πιθανότητα μεταβλητής X τριών ενδεχομένων',
+				  scene = dict(
+					  xaxis_title='X = 1',
+					  yaxis_title='X = 2',
+					  zaxis_title='H(X)'),
+				 margin=dict(l=20, r=20, b=20, t=100))
 
 
 fig.write_html("test.html") #Modifiy the html file
