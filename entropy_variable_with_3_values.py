@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from itertools import product
-import matplotlib.pyplot as plt
 import numpy as np
 import math
-from mpl_toolkits import mplot3d
-import matplotlib.animation as animation
-
+import plotly.graph_objects as go
+import plotly.express as px
 
 def a_term_of_entropy(p):
 	if p == 0:
@@ -14,39 +11,47 @@ def a_term_of_entropy(p):
 	return p * math.log2(p) * (-1)
 
 
-test = np.arange(0.0, 1.01, 0.01)
-print(len(test))
-product_test = list(product(test, test, test))
+product_test = list(product(np.arange(0.0, 1.01, 0.01), np.arange(0.0, 1.01, 0.01), np.arange(0.0, 1.01, 0.01)))
 acceptable_triad = []
 
 for i in product_test:
-	if sum(i) == 1:
+	if np.float64(1.0) ==  np.round(i[0]+ i[1]+ i[2], 2):
 		acceptable_triad.append(i)
-		
+	
 x = []
 y = []
 z = []
+
 
 for i in acceptable_triad:
 	x.append(i[0])
 	y.append(i[1])
 	z.append(a_term_of_entropy(i[0])+a_term_of_entropy(i[1])+a_term_of_entropy(i[2]))
 
-ax = plt.axes(projection="3d")
+
+fig = go.Figure(data=[go.Scatter3d(
+	x=x,
+	y=y,
+	z=z,
+	mode='markers',
+	marker=dict(
+		size=12,
+		color=z,                # set color to an array/list of desired values
+		colorscale='Turbo',   # choose a colorscale
+		opacity=0.8
+	)
+)])
 
 
-
-#ax.plot3D(x,y,z, label='Εντροπία - Πιθανότητα')
-
-
-
-#for colourfull scater diagram
-#1 colored by value of `z`
-ax.scatter(x, y, z, c = plt.cm.jet(z/max(z))) 
+# tight layout
+fig.update_layout(scene = dict(
+					xaxis_title='X = 1',
+					yaxis_title='X = 2',
+					zaxis_title='H(X)'),
+					margin=dict(l=0, r=0, b=0, t=0))
 
 
-ax.set_xlabel('x = 1')
-ax.set_ylabel('x = 2')
-ax.set_zlabel('H(X)', rotation = 0)
-plt.show()
+fig.write_html("test.html") #Modifiy the html file
+fig.show()
+
 
