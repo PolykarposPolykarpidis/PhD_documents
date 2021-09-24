@@ -35,7 +35,7 @@ print('len(G):', counter)
 print("number_of_chars:", all_char)
 print()
 
-
+temp = counter/all_char
 
 counter = 0
 all_char = 0
@@ -45,12 +45,12 @@ for line in all_data:
 		all_char+=1
 		if previous+[voice] == ['G','F']:
 			counter+=1
-
+		previous = [voice]
 print('len(G,F):', counter)
 print("number_of_bigrams:", all_char)
 print()
 
-
+temp *= counter/all_char
 
 counter = 0
 all_char = 0
@@ -60,6 +60,10 @@ for line in all_data:
 		all_char+=1
 		if previous+[voice] == ['G','F','E']:
 			counter+=1
-
+		previous = [voice]
 print('len(G,F,E):', counter)
 print("number_of_trigrams:", all_char)
+
+temp *= counter/all_char
+print()
+print('stochastic =', temp)
