@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# see also https://plotly.com/python/3d-axes/
 from itertools import product
 import numpy as np
 import math
