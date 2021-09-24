@@ -30,13 +30,43 @@ for line in all_data:
 	previous = [line[0]]
 	for voice in line[1:]:
 		all_char+=1
-		print(previous+[voice])
-		if previous+[voice] == ['b','a']:
+		if previous+[voice] == ['E','F']:
 			counter+=1
 		previous = [voice]
 		
 		
 		
-print('len(b,a):', counter)
-print("number_of_bigrams:", all_char)
+print('len(E,F):', counter)
+print()
+
+
+counter = 0
+all_char = 0
+for line in all_data:
+	previous = [line[0]]
+	for voice in line[1:]:
+		all_char+=1
+		if previous+[voice] == ['a','F']:
+			counter+=1
+		previous = [voice]
+		
+		
+		
+print('len(a,F):', counter)
+print()
+
+
+counter = 0
+all_char = 0
+for line in all_data:
+	previous = [line[0]]
+	for voice in line[1:]:
+		all_char+=1
+		if previous+[voice] == ['E','E']:
+			counter+=1
+		previous = [voice]
+		
+		
+		
+print('len(E,E):', counter)
 print()
