@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Created on Fri Sep 24 12:47:28 2021
+
+@author: polykarpos polykarpidis
+"""
 #see also https://plotly.com/python/3d-axes/
 from itertools import product
 import numpy as np
