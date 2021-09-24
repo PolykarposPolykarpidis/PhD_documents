@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Created on Fri Sep 24 12:47:28 2021
 
+@author: polykarpos polykarpidis
+"""
 import matplotlib.pyplot as plt
 import numpy as np
 import math
