@@ -1,0 +1,56 @@
+DROP TABLE manuscripts;
+DROP TABLE pieces;
+
+CREATE TABLE manuscripts (
+	catalogue VARCHAR(100),
+	library_ms VARCHAR(100),
+	classification_number VARCHAR(100),
+	Type_ms VARCHAR(200),
+	date_db INT[2],
+	date_ms VARCHAR(50),
+	scriber VARCHAR(100),
+	notes TEXT,
+	PRIMARY KEY (library_ms, classification_number)
+);
+
+
+
+CREATE TABLE pieces (
+	id serial,
+	library_ms VARCHAR(100),
+	classification_number VARCHAR(100),
+	folio_page VARCHAR(20),
+	catalog_note TEXT,
+	composition_type VARCHAR(50),
+	characterization VARCHAR(100),
+	Karykes_composition VARCHAR(50),
+	composer VARCHAR(50),
+	characterization_of_theophanes VARCHAR(100),
+	confidence_value INT,
+	mode VARCHAR(20),
+	incipit VARCHAR(50),
+	notes TEXT,
+	PRIMARY KEY (id)
+);
+
+COPY manuscripts(catalogue,library_ms,classification_number,type_ms,date_db,date_ms,scriber,notes)
+FROM 'C:\Users\polykarpos\Desktop\db.csv' WITH CSV HEADER;
+
+COPY pieces(library_ms,classification_number,folio_page,catalog_note,composition_type,characterization,Karykes_composition,composer,characterization_of_theophanes,confidence_value,mode,incipit,notes)
+FROM 'C:\Users\polykarpos\Desktop\db_pieces.csv' WITH CSV HEADER;
+
+=============================================================
+
+
+Copy (
+SELECT 
+pieces.library_ms, pieces.classification_number, manuscripts.date_ms, pieces.folio_page
+
+FROM pieces INNER JOIN manuscripts
+ON manuscripts.library_ms = pieces.library_ms AND manuscripts.classification_number = pieces.classification_number
+
+WHERE Karykes_composition = 'Χερουβικό 1'
+
+ORDER BY ((date_db[1]+date_db[2])/2) ASC
+	  
+) To 'C:\Users\polykarpos\Desktop\test.csv' With CSV DELIMITER ',';
