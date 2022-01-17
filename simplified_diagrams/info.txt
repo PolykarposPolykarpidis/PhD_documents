@@ -1,0 +1,1 @@
+This folder contains the digrams with sthe syllable simplification.
